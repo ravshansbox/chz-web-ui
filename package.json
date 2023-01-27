@@ -2,7 +2,16 @@
   "name": "chz-web-ui",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "vite"
+  },
   "devDependencies": {
-    "typescript": "^4.9.4"
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4"
   }
 }
