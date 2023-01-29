@@ -16,5 +16,6 @@ build:
   only:
     - main
   script:
+    - echo "VITE_API_BASE_URL=https://api.chestniyznak.uz" > .env
     - docker image build . -t ${IMAGE}
     - docker image push ${IMAGE}
