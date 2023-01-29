@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { createAccessToken, fetchAccessToken } from './api';
 
 const initialState = {
   isAuthenticated: false,
@@ -12,14 +13,29 @@ export const {
 } = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    setIsAuthenticated: (state, { payload }: PayloadAction<boolean>) => {
-      state.isAuthenticated = payload;
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchAccessToken.pending, (state) => {
+      state.isAuthenticating = true;
+    });
+    builder.addCase(fetchAccessToken.fulfilled, (state) => {
       state.isAuthenticating = false;
-    },
-    setIsAuthenticating: (state, { payload }: PayloadAction<boolean>) => {
+      state.isAuthenticated = true;
+    });
+    builder.addCase(fetchAccessToken.rejected, (state) => {
+      state.isAuthenticating = false;
       state.isAuthenticated = false;
-      state.isAuthenticating = payload;
-    },
+    });
+    builder.addCase(createAccessToken.pending, (state) => {
+      state.isAuthenticating = true;
+    });
+    builder.addCase(createAccessToken.fulfilled, (state) => {
+      state.isAuthenticating = false;
+      state.isAuthenticated = true;
+    });
+    builder.addCase(createAccessToken.rejected, (state) => {
+      state.isAuthenticating = false;
+      state.isAuthenticated = false;
+    });
   },
 });
