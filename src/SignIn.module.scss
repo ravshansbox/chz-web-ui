@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-block-start: 64px;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 360px;
+  }
+  @media (min-width: 1366px) {
+    width: 480px;
+  }
+}
+
+.input {
+  border: 1px solid lightgrey;
+  width: 100%;
+  padding-inline: 16px;
+  padding-block: 8px;
+}
+
+.button {
+  padding: 0;
+  background-color: darkcyan;
+  color: white;
+  width: 100%;
+  border-color: transparent;
+  padding-inline: 16px;
+  padding-block: 8px;
+}
