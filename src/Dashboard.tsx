@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './auth';
+import { AppState } from './store';
 
 export const Dashboard = () => {
+  const auth = useSelector((state: AppState) => state.auth);
   const navigate = useNavigate();
-  const auth = useAuth();
 
   useEffect(() => {
     if (!auth.isAuthenticated && !auth.isAuthenticating) {
