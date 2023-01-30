@@ -25,5 +25,7 @@ export const Dashboard = () => {
     }
   }, [isAuthTriggered, auth.isAuthenticated, auth.isAuthenticating]);
 
-  return <h1>Dashboard</h1>;
+  const message = auth.username !== null ? `Welcome, ${auth.username}` : 'Dashboard';
+
+  return <h1>{message}</h1>;
 };
