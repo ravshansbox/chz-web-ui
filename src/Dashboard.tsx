@@ -23,7 +23,7 @@ export const Dashboard = () => {
     if (isAuthTriggered && !auth.isAuthenticating && !auth.isAuthenticated) {
       navigate('/signin');
     }
-  }, [auth.isAuthenticated, auth.isAuthenticating]);
+  }, [isAuthTriggered, auth.isAuthenticated, auth.isAuthenticating]);
 
   return <h1>Dashboard</h1>;
 };
