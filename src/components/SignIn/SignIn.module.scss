@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 16px;
 }
 
 .form {
@@ -19,19 +18,7 @@
   }
 }
 
-.input {
-  border: 1px solid lightgrey;
-  width: 100%;
-  padding-inline: 16px;
-  padding-block: 8px;
-}
-
-.button {
-  padding: 0;
-  background-color: darkcyan;
-  color: white;
-  width: 100%;
-  border-color: transparent;
-  padding-inline: 16px;
-  padding-block: 8px;
+.formLabel {
+  display: flex;
+  flex-direction: column;
 }

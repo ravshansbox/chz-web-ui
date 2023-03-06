@@ -21,11 +21,11 @@ export const SignIn = () => {
         }}
       >
         <Form className={classes.form}>
-          <label>
+          <label className={classes.formLabel}>
             <span>Username</span>
             <Field className={classes.input} type="text" name="username" />
           </label>
-          <label>
+          <label className={classes.formLabel}>
             <span>Password</span>
             <Field className={classes.input} type="password" name="password" />
           </label>
