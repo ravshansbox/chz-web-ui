@@ -1,9 +1,9 @@
 import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { createAccessToken } from './api';
-import { ACCESS_TOKEN_ID_KEY } from './constants';
+import { createAccessToken } from '../../api';
+import { ACCESS_TOKEN_ID_KEY } from '../../constants';
+import { useAppDispatch } from '../../store';
 import classes from './SignIn.module.scss';
-import { useAppDispatch } from './store';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();

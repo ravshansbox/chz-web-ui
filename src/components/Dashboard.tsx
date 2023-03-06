@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { ComponentType, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { fetchAccessToken } from './api';
-import { ACCESS_TOKEN_ID_KEY } from './constants';
-import { AppState, useAppDispatch } from './store';
+import { Outlet, useNavigate, useOutlet } from 'react-router-dom';
+import { fetchAccessToken } from '../api';
+import { ACCESS_TOKEN_ID_KEY } from '../constants';
+import { AppState, useAppDispatch } from '../store';
+import { Sidebar } from './Sidebar';
 
-export const Dashboard = () => {
+export const Dashboard: ComponentType = () => {
   const [isAuthTriggered, setIsAuthTriggered] = useState(false);
   const auth = useSelector((state: AppState) => state.auth);
   const dispatch = useAppDispatch();
@@ -25,7 +26,14 @@ export const Dashboard = () => {
     }
   }, [isAuthTriggered, auth.isAuthenticated, auth.isAuthenticating]);
 
+  const outlet = useOutlet();
+
   const message = auth.username !== null ? `Welcome, ${auth.username}` : 'Dashboard';
 
-  return <h1>{message}</h1>;
+  return (
+    <div>
+      <Sidebar />
+      {outlet ? <Outlet /> : <h1>{message}</h1>}
+    </div>
+  );
 };

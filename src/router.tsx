@@ -1,8 +1,17 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Dashboard } from './Dashboard';
-import { SignIn } from './SignIn';
+import { Companies } from './components/Companies';
+import { Dashboard } from './components/Dashboard';
+import { SignIn } from './components/SignIn/SignIn';
+import { Users } from './components/Users';
 
 export const router = createBrowserRouter([
-  { path: '/', element: <Dashboard /> },
-  { path: '/signin', element: <SignIn /> },
+  {
+    path: '',
+    element: <Dashboard />,
+    children: [
+      { path: 'users', element: <Users /> },
+      { path: 'companies', element: <Companies /> },
+    ],
+  },
+  { path: 'signin', element: <SignIn /> },
 ]);
