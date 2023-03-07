@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Companies } from './components/Companies';
 import { Dashboard } from './components/Dashboard';
 import { SignIn } from './components/SignIn/SignIn';
-import { Users } from './components/Users';
+import { Users } from './components/Users/Users';
 
 export const router = createBrowserRouter([
   {

@@ -2,8 +2,10 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
+    "lib": ["DOM", "ES2015", "ES2016", "ES2017", "ES2018"],
     "module": "esnext",
     "moduleResolution": "node",
+    "skipLibCheck": true,
     "strict": true
   }
 }

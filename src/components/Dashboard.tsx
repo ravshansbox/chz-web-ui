@@ -1,8 +1,7 @@
 import { ComponentType, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet, useNavigate, useOutlet } from 'react-router-dom';
-import { fetchAccessToken } from '../api';
-import { ACCESS_TOKEN_ID_KEY } from '../constants';
+import { restoreAccessToken } from '../api/authApi';
 import { AppState, useAppDispatch } from '../store';
 import { Sidebar } from './Sidebar';
 
@@ -14,10 +13,7 @@ export const Dashboard: ComponentType = () => {
 
   useEffect(() => {
     setIsAuthTriggered(true);
-    const accessTokenId = window.localStorage.getItem(ACCESS_TOKEN_ID_KEY);
-    if (accessTokenId !== null) {
-      dispatch(fetchAccessToken(accessTokenId));
-    }
+    dispatch(restoreAccessToken());
   }, []);
 
   useEffect(() => {

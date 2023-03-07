@@ -1,7 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { createAccessToken } from '../../api';
-import { ACCESS_TOKEN_ID_KEY } from '../../constants';
+import { createAccessToken } from '../../api/authApi';
 import { useAppDispatch } from '../../store';
 import classes from './SignIn.module.scss';
 
@@ -14,8 +13,7 @@ export const SignIn = () => {
       <Formik
         initialValues={{ username: '', password: '' }}
         onSubmit={(values) => {
-          dispatch(createAccessToken(values)).then(({ payload }) => {
-            window.localStorage.setItem(ACCESS_TOKEN_ID_KEY, payload.id);
+          dispatch(createAccessToken(values)).then(() => {
             navigate('/');
           });
         }}
