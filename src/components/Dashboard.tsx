@@ -26,6 +26,10 @@ export const Dashboard: ComponentType = () => {
 
   const message = auth.username !== null ? `Welcome, ${auth.username}` : 'Dashboard';
 
+  if (!isAuthTriggered) {
+    return null;
+  }
+
   return (
     <div>
       <Sidebar />
