@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { signOut } from '../api/authApi';
 import { AppState, useAppDispatch } from '../store';
 
@@ -21,15 +21,16 @@ const Item = styled('li')({
   paddingInline: '4px',
 });
 
-const Button = styled('button')({
+const Button = styled('button')(({ theme }) => ({
   backgroundColor: 'transparent',
   border: 'none',
-  color: 'rgb(0, 0, 238)',
+  color: theme.linkColor,
   cursor: 'pointer',
   padding: '0',
-});
+}));
 
 export const Sidebar: ComponentType = () => {
+  const theme = useTheme();
   const auth = useSelector((state: AppState) => state.auth);
   const dispatch = useAppDispatch();
 
@@ -39,7 +40,7 @@ export const Sidebar: ComponentType = () => {
         <Item key={index}>
           <NavLink
             style={({ isActive }) => ({
-              color: 'rgb(0, 0, 238)',
+              color: theme.linkColor,
               textDecoration: isActive ? 'underline' : 'none',
             })}
             to={link.path}
