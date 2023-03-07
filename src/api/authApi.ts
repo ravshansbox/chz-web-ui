@@ -38,3 +38,7 @@ export const createAccessToken = createAsyncThunk(
     return accessToken;
   },
 );
+
+export const signOut = createAsyncThunk('signOut', async () => {
+  return Promise.resolve();
+});

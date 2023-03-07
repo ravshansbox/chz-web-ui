@@ -2,7 +2,8 @@ import { ComponentType } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { AppState } from '../store';
+import { signOut } from '../api/authApi';
+import { AppState, useAppDispatch } from '../store';
 
 const visibleLinks = [
   { path: '', title: 'Dashboard' },
@@ -30,6 +31,7 @@ const Button = styled('button')({
 
 export const Sidebar: ComponentType = () => {
   const auth = useSelector((state: AppState) => state.auth);
+  const dispatch = useAppDispatch();
 
   return (
     <List>
@@ -47,7 +49,15 @@ export const Sidebar: ComponentType = () => {
         </Item>
       ))}
       <Item>
-        <span>{auth.username}</span>(<Button>sign out</Button>)
+        <span>{auth.username}</span>(
+        <Button
+          onClick={() => {
+            dispatch(signOut());
+          }}
+        >
+          sign out
+        </Button>
+        )
       </Item>
     </List>
   );
