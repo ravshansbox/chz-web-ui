@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Outlet, useNavigate, useOutlet } from 'react-router-dom';
 import { restoreAccessToken } from '../api/authApi';
 import { AppState, useAppDispatch } from '../store';
-import { Sidebar } from './Sidebar';
+import { Sidebar } from './Header/Header';
 
 export const Dashboard: ComponentType = () => {
   const [isAuthTriggered, setIsAuthTriggered] = useState(false);
