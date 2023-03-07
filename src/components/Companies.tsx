@@ -2,6 +2,7 @@ import { ComponentType, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { fetchCompanies } from '../api/companyApi';
 import { AppState, useAppDispatch } from '../store';
+import { Card } from './core/Card';
 
 export const Companies: ComponentType = () => {
   const companies = useSelector((state: AppState) => state.companies);
@@ -12,9 +13,8 @@ export const Companies: ComponentType = () => {
   }, []);
 
   return (
-    <>
-      <h1>Companies</h1>
+    <Card title="Companies">
       <pre>{JSON.stringify(companies, null, 2)}</pre>
-    </>
+    </Card>
   );
 };

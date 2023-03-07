@@ -2,8 +2,10 @@ import { ComponentType, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet, useNavigate, useOutlet } from 'react-router-dom';
 import { restoreAccessToken } from '../api/authApi';
+import { URLs } from '../constants';
 import { AppState, useAppDispatch } from '../store';
-import { Sidebar } from './Header';
+import { Header } from './core/Header';
+import { HeaderSection } from './HeaderSection';
 
 export const Dashboard: ComponentType = () => {
   const [isAuthTriggered, setIsAuthTriggered] = useState(false);
@@ -18,13 +20,11 @@ export const Dashboard: ComponentType = () => {
 
   useEffect(() => {
     if (isAuthTriggered && !auth.isAuthenticating && !auth.isAuthenticated) {
-      navigate('/signin');
+      navigate(URLs.signIn);
     }
   }, [isAuthTriggered, auth.isAuthenticated, auth.isAuthenticating]);
 
   const outlet = useOutlet();
-
-  const message = auth.username !== null ? `Welcome, ${auth.username}` : 'Dashboard';
 
   if (!isAuthTriggered) {
     return null;
@@ -32,8 +32,8 @@ export const Dashboard: ComponentType = () => {
 
   return (
     <div>
-      <Sidebar />
-      {outlet ? <Outlet /> : <h1>{message}</h1>}
+      <HeaderSection />
+      {outlet ? <Outlet /> : <Header>Welcome</Header>}
     </div>
   );
 };

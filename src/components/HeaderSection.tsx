@@ -4,39 +4,27 @@ import { NavLink } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
 import { signOut } from '../api/authApi';
 import { AppState, useAppDispatch } from '../store';
+import { LinkButton } from './core/LinkButton';
+import { List } from './core/List';
 
-const visibleLinks = [
+const links = [
   { path: '', title: 'Dashboard' },
   { path: 'users', title: 'Users' },
   { path: 'companies', title: 'Companies' },
 ];
 
-const List = styled('ul')({
-  display: 'flex',
-  listStyleType: 'none',
-  paddingInlineStart: '0',
-});
-
 const Item = styled('li')({
   paddingInline: '4px',
 });
 
-const Button = styled('button')(({ theme }) => ({
-  backgroundColor: 'transparent',
-  border: 'none',
-  color: theme.linkColor,
-  cursor: 'pointer',
-  padding: '0',
-}));
-
-export const Sidebar: ComponentType = () => {
+export const HeaderSection: ComponentType = () => {
   const theme = useTheme();
   const auth = useSelector((state: AppState) => state.auth);
   const dispatch = useAppDispatch();
 
   return (
     <List>
-      {visibleLinks.map((link, index) => (
+      {links.map((link, index) => (
         <Item key={index}>
           <NavLink
             style={({ isActive }) => ({
@@ -50,15 +38,16 @@ export const Sidebar: ComponentType = () => {
         </Item>
       ))}
       <Item>
-        <span>{auth.username}</span>(
-        <Button
+        <span>{auth.username}</span>
+        <span>(</span>
+        <LinkButton
           onClick={() => {
             dispatch(signOut());
           }}
         >
           sign out
-        </Button>
-        )
+        </LinkButton>
+        <span>)</span>
       </Item>
     </List>
   );

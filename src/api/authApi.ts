@@ -39,6 +39,6 @@ export const createAccessToken = createAsyncThunk(
   },
 );
 
-export const signOut = createAsyncThunk('signOut', async () => {
-  return Promise.resolve();
+export const signOut = createAsyncThunk('signOut', () => {
+  window.localStorage.removeItem(ACCESS_TOKEN_ID_KEY);
 });
