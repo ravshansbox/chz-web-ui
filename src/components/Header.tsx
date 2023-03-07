@@ -20,11 +20,6 @@ const Item = styled('li')({
   paddingInline: '4px',
 });
 
-const Link = styled(NavLink)({
-  color: 'rgb(0, 0, 238)',
-  textDecoration: 'none',
-});
-
 const Button = styled('button')({
   backgroundColor: 'transparent',
   border: 'none',
@@ -40,12 +35,15 @@ export const Sidebar: ComponentType = () => {
     <List>
       {visibleLinks.map((link, index) => (
         <Item key={index}>
-          <Link
-            style={({ isActive }) => ({ textDecoration: isActive ? 'underline' : 'none' })}
+          <NavLink
+            style={({ isActive }) => ({
+              color: 'rgb(0, 0, 238)',
+              textDecoration: isActive ? 'underline' : 'none',
+            })}
             to={link.path}
           >
             {link.title}
-          </Link>
+          </NavLink>
         </Item>
       ))}
       <Item>
