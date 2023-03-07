@@ -1,11 +1,11 @@
 import { ComponentType } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
 import { signOut } from '../api/authApi';
 import { AppState, useAppDispatch } from '../store';
 import { LinkButton } from './core/LinkButton';
 import { List } from './core/List';
+import { NavLink } from './core/NavLink';
 
 const links = [
   { path: '', title: 'Dashboard' },

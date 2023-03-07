@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { fetchUsers } from '../api/userApi';
 import { AppState, useAppDispatch } from '../store';
 import { Card } from './core/Card';
+import { List } from './core/List';
+import { NavLink } from './core/NavLink';
 import { Table, TableBodyCell, TableHeadCell } from './core/Table';
 
 export const Users: ComponentType = () => {
@@ -15,6 +17,9 @@ export const Users: ComponentType = () => {
 
   return (
     <Card title="Users">
+      <List>
+        <NavLink to="new">New</NavLink>
+      </List>
       <Table>
         <thead>
           <tr>
