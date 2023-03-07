@@ -5,15 +5,14 @@ import { Header as HeadingCore } from './Header';
 const Container = styled('div')({
   display: 'flex',
   flexDirection: 'column',
+  padding: '4px',
 });
 
 const Heading = styled(HeadingCore)(({ theme }) => ({
   backgroundColor: theme.cardHeadingBgColor,
 }));
 
-const Content = styled('div')({
-  padding: '4px',
-});
+const Content = styled('div')({});
 
 type CardProps = {
   title: string;
