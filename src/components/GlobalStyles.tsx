@@ -7,7 +7,4 @@ export const GlobalStyles = createGlobalStyle({
   html: {
     boxSizing: 'border-box',
   },
-  body: {
-    margin: '0',
-  },
 });

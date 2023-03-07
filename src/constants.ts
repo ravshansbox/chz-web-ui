@@ -15,5 +15,6 @@ export const URLs = {
   root: '/',
   signIn: '/signin',
   users: '/users',
+  usersNew: '/users/new',
   companies: '/companies',
 };

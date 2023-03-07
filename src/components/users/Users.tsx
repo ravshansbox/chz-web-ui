@@ -1,11 +1,11 @@
 import { ComponentType, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { fetchUsers } from '../api/userApi';
-import { AppState, useAppDispatch } from '../store';
-import { Card } from './core/Card';
-import { List } from './core/List';
-import { NavLink } from './core/NavLink';
-import { Table, TableBodyCell, TableHeadCell } from './core/Table';
+import { fetchUsers } from '../../api/userApi';
+import { AppState, useAppDispatch } from '../../store';
+import { Card } from '../core/Card';
+import { List } from '../core/List';
+import { NavLink } from '../core/NavLink';
+import { Table, TableBodyCell, TableHeadCell } from '../core/Table';
 
 export const Users: ComponentType = () => {
   const users = useSelector((state: AppState) => state.users);

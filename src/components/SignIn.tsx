@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { createAccessToken } from '../api/authApi';
 import { URLs } from '../constants';
 import { useAppDispatch } from '../store';
+import { Label } from './core/Label';
 
 const Container = styled('div')({
   display: 'flex',
@@ -23,11 +24,6 @@ const FormStyled = styled(Form)({
   '@media (min-width: 1366px)': {
     width: '480px',
   },
-});
-
-const Label = styled('label')({
-  display: 'flex',
-  flexDirection: 'column',
 });
 
 export const SignIn = () => {

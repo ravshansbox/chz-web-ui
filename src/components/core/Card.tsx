@@ -2,11 +2,12 @@ import { ComponentType, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import { Header as HeadingCore } from './Header';
 
-const Container = styled('div')({
+const Container = styled('div')(({ theme }) => ({
+  border: `1px solid ${theme.cardHeadingBgColor}`,
   display: 'flex',
   flexDirection: 'column',
   padding: '4px',
-});
+}));
 
 const Heading = styled(HeadingCore)(({ theme }) => ({
   backgroundColor: theme.cardHeadingBgColor,
