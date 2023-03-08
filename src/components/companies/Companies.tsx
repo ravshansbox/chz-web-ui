@@ -29,7 +29,7 @@ export const Companies: ComponentType = () => {
         </thead>
         <tbody>
           {companies.companies?.map((company) => (
-            <tr>
+            <tr key={company.id}>
               <TableBodyCell>{company.id}</TableBodyCell>
               <TableBodyCell>{company.name}</TableBodyCell>
             </tr>

@@ -29,8 +29,8 @@ export const Users: ComponentType = () => {
           </tr>
         </thead>
         <tbody>
-          {users.users?.map((user, index) => (
-            <tr key={index}>
+          {users.users?.map((user) => (
+            <tr key={user.id}>
               <TableBodyCell>{user.id}</TableBodyCell>
               <TableBodyCell>{user.username}</TableBodyCell>
               <TableBodyCell>{String(user.is_root)}</TableBodyCell>
