@@ -17,14 +17,9 @@ export const NewUser: ComponentType = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const initialValues = {
-    username: '',
-    password: '',
-  };
-
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{ username: '', password: '' }}
       onSubmit={async (values) => {
         await dispatch(createUser(values));
         navigate(URLs.users);

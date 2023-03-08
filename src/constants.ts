@@ -17,4 +17,5 @@ export const URLs = {
   users: '/users',
   usersNew: '/users/new',
   companies: '/companies',
+  companiesNew: '/companies/new',
 };

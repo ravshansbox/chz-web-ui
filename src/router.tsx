@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Companies } from './components/Companies';
+import { Companies } from './components/companies/Companies';
+import { NewCompany } from './components/companies/NewCompany';
 import { Dashboard } from './components/Dashboard';
 import { SignIn } from './components/SignIn';
 import { NewUser } from './components/users/NewUser';
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
       { path: URLs.users, element: <Users /> },
       { path: URLs.usersNew, element: <NewUser /> },
       { path: URLs.companies, element: <Companies /> },
+      { path: URLs.companiesNew, element: <NewCompany /> },
     ],
   },
   { path: URLs.signIn, element: <SignIn /> },
