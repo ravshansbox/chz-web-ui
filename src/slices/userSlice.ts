@@ -3,7 +3,7 @@ import { fetchUsers } from '../api/userApi';
 
 const initialState = {
   isFetching: false,
-  users: null as any[] | null,
+  list: null as any[] | null,
   error: null as string | null,
 };
 
@@ -17,7 +17,7 @@ export const userSlice = createSlice({
     });
     builder.addCase(fetchUsers.fulfilled, (state, { payload }) => {
       state.isFetching = false;
-      state.users = payload;
+      state.list = payload;
     });
     builder.addCase(fetchUsers.rejected, (state, { payload }) => {
       state.isFetching = false;

@@ -3,7 +3,6 @@ import { ComponentType } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { createUser } from '../../api/userApi';
-import { URLs } from '../../constants';
 import { useAppDispatch } from '../../store';
 import { Label } from '../core/Label';
 
@@ -22,7 +21,7 @@ export const NewUser: ComponentType = () => {
       initialValues={{ username: '', password: '' }}
       onSubmit={async (values) => {
         await dispatch(createUser(values));
-        navigate(URLs.users);
+        navigate('/users');
       }}
     >
       <Form autoComplete="off">

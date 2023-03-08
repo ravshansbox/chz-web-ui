@@ -1,8 +1,7 @@
 import { ComponentType, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Outlet, useNavigate, useOutlet } from 'react-router-dom';
+import { useNavigate, useOutlet } from 'react-router-dom';
 import { restoreAccessToken } from '../api/authApi';
-import { URLs } from '../constants';
 import { AppState, useAppDispatch } from '../store';
 import { Header } from './core/Header';
 import { HeaderSection } from './HeaderSection';
@@ -20,7 +19,7 @@ export const Home: ComponentType = () => {
 
   useEffect(() => {
     if (isAuthTriggered && !auth.isAuthenticating && !auth.isAuthenticated) {
-      navigate(URLs.signIn);
+      navigate('/signin');
     }
   }, [isAuthTriggered, auth.isAuthenticated, auth.isAuthenticating]);
 
@@ -33,7 +32,7 @@ export const Home: ComponentType = () => {
   return (
     <div>
       <HeaderSection />
-      {outlet ? <Outlet /> : <Header>Welcome</Header>}
+      {outlet || <Header>Welcome</Header>}
     </div>
   );
 };

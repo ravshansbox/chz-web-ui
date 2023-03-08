@@ -3,7 +3,7 @@ import { fetchCompanies } from '../api/companyApi';
 
 const initialState = {
   isFetching: false,
-  companies: null as any[] | null,
+  list: null as any[] | null,
   error: null as string | null,
 };
 
@@ -17,7 +17,7 @@ export const companySlice = createSlice({
     });
     builder.addCase(fetchCompanies.fulfilled, (state, { payload }) => {
       state.isFetching = false;
-      state.companies = payload;
+      state.list = payload;
     });
     builder.addCase(fetchCompanies.rejected, (state, { payload }) => {
       state.isFetching = false;

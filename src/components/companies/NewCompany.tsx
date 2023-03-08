@@ -1,10 +1,16 @@
-import { Field, Form, Formik } from 'formik';
+import { Field, Form as FormCore, Formik } from 'formik';
 import { ComponentType } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { createCompany } from '../../api/companyApi';
-import { URLs } from '../../constants';
 import { useAppDispatch } from '../../store';
 import { Label } from '../core/Label';
+
+const Form = styled(FormCore)({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+});
 
 export const NewCompany: ComponentType = () => {
   const dispatch = useAppDispatch();
@@ -15,14 +21,14 @@ export const NewCompany: ComponentType = () => {
       initialValues={{ name: '' }}
       onSubmit={async (values) => {
         await dispatch(createCompany(values));
-        navigate(URLs.companies);
+        navigate('/companies');
       }}
     >
       <Form autoComplete="off">
         <Label>
           <Field name="name" type="text" />
         </Label>
-        <button type="submit">Submit</button>
+        <button type="submit">Create</button>
       </Form>
     </Formik>
   );

@@ -2,7 +2,6 @@ import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { createAccessToken } from '../api/authApi';
-import { URLs } from '../constants';
 import { useAppDispatch } from '../store';
 import { Label } from './core/Label';
 
@@ -36,7 +35,7 @@ export const SignIn = () => {
         initialValues={{ username: '', password: '' }}
         onSubmit={(values) => {
           dispatch(createAccessToken(values)).then(() => {
-            navigate(URLs.root);
+            navigate('/');
           });
         }}
       >
