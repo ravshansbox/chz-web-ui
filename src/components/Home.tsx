@@ -7,7 +7,7 @@ import { AppState, useAppDispatch } from '../store';
 import { Header } from './core/Header';
 import { HeaderSection } from './HeaderSection';
 
-export const Dashboard: ComponentType = () => {
+export const Home: ComponentType = () => {
   const [isAuthTriggered, setIsAuthTriggered] = useState(false);
   const auth = useSelector((state: AppState) => state.auth);
   const dispatch = useAppDispatch();

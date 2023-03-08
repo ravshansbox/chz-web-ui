@@ -8,7 +8,7 @@ import { List } from './core/List';
 import { NavLink } from './core/NavLink';
 
 const links = [
-  { path: '', title: 'Dashboard' },
+  { path: '', title: 'Home' },
   { path: 'users', title: 'Users' },
   { path: 'companies', title: 'Companies' },
 ];
