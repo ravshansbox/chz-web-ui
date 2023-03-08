@@ -29,9 +29,6 @@
     "git": {
       "commitMessage": "chore: release v${version}"
     },
-    "npm": {
-      "publish": true
-    },
     "plugins": {
       "@release-it/conventional-changelog": {
         "infile": "CHANGELOG.md",
