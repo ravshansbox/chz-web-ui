@@ -13,6 +13,11 @@ const links = [
   { path: 'companies', title: 'Companies' },
 ];
 
+const Container = styled('div')({
+  display: 'flex',
+  justifyContent: 'space-between',
+});
+
 const Item = styled('li')({
   paddingInline: '4px',
 });
@@ -23,32 +28,36 @@ export const HeaderSection: ComponentType = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <List>
-      {links.map((link, index) => (
-        <Item key={index}>
-          <NavLink
-            style={({ isActive }) => ({
-              color: theme.linkColor,
-              textDecoration: isActive ? 'underline' : 'none',
-            })}
-            to={link.path}
+    <Container>
+      <List>
+        {links.map((link, index) => (
+          <Item key={index}>
+            <NavLink
+              style={({ isActive }) => ({
+                color: theme.linkColor,
+                textDecoration: isActive ? 'underline' : 'none',
+              })}
+              to={link.path}
+            >
+              {link.title}
+            </NavLink>
+          </Item>
+        ))}
+      </List>
+      <List>
+        <Item>
+          <span>{auth.username}</span>
+          <span>(</span>
+          <LinkButton
+            onClick={() => {
+              dispatch(signOut());
+            }}
           >
-            {link.title}
-          </NavLink>
+            sign out
+          </LinkButton>
+          <span>)</span>
         </Item>
-      ))}
-      <Item>
-        <span>{auth.username}</span>
-        <span>(</span>
-        <LinkButton
-          onClick={() => {
-            dispatch(signOut());
-          }}
-        >
-          sign out
-        </LinkButton>
-        <span>)</span>
-      </Item>
-    </List>
+      </List>
+    </Container>
   );
 };
