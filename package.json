@@ -5,7 +5,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "release": "release-it"
+    "release": "release-it --ci"
   },
   "devDependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -29,10 +29,13 @@
     "git": {
       "commitMessage": "chore: release v${version}"
     },
+    "npm": {
+      "publish": true
+    },
     "plugins": {
       "@release-it/conventional-changelog": {
         "infile": "CHANGELOG.md",
-        "preset": "conventionalcommits"
+        "preset": "eslint"
       }
     }
   }
