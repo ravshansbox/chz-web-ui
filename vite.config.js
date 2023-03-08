@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 const config = {
   define: {
     VITE_APP_VERSION: JSON.stringify(process.env.npm_package_version),
-    VITE_BUILD_TIMESTAMP: JSON.stringify(new Date().toISOString()),
+    VITE_BUILD_TIMESTAMP: JSON.stringify(new Date().toLocaleString()),
   },
   plugins: [react()],
   server: {
