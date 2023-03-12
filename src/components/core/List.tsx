@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const List = styled('ul')({
   display: 'flex',
+  gap: '8px',
   listStyleType: 'none',
-  margin: '0',
-  padding: '4px',
+  marginBlock: '0',
+  paddingInlineStart: '0',
 });

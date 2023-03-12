@@ -1,14 +1,14 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { httpClient } from '../utils/httpClient';
 
-export const fetchUsers = createAsyncThunk('fetchUsers', () => {
-  return httpClient.fetch('/users');
-});
-
-type CreateUserBody = {
+type User = {
+  id: string;
   username: string;
-  password: string;
+  is_root: boolean;
 };
-export const createUser = createAsyncThunk('createUser', (body: CreateUserBody) => {
-  return httpClient.fetch('/users', { method: 'POST', body });
-});
+export const fetchUsers = () => {
+  return httpClient.fetch<User[]>('/users');
+};
+
+export const createUser = (body: { username: string; password: string }) => {
+  return httpClient.fetch<User>('/users', { method: 'POST', body });
+};

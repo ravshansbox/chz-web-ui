@@ -3,7 +3,6 @@ import { ComponentType } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { createUser } from '../../api/userApi';
-import { useAppDispatch } from '../../store';
 import { Label } from '../core/Label';
 
 const Form = styled(FormCore)({
@@ -13,14 +12,13 @@ const Form = styled(FormCore)({
 });
 
 export const NewUser: ComponentType = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   return (
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={async (values) => {
-        await dispatch(createUser(values));
+        await createUser(values);
         navigate('/users');
       }}
     >

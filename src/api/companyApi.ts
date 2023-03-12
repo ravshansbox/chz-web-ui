@@ -1,13 +1,14 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { httpClient } from '../utils/httpClient';
 
-export const fetchCompanies = createAsyncThunk('fetchCompanies', () => {
-  return httpClient.fetch('/companies');
-});
-
-type CreateCompanyBody = {
+type Company = {
+  id: string;
   name: string;
 };
-export const createCompany = createAsyncThunk('createCompany', (body: CreateCompanyBody) => {
-  return httpClient.fetch('/companies', { method: 'POST', body });
-});
+
+export const fetchCompanies = () => {
+  return httpClient.fetch<Company[]>('/companies');
+};
+
+export const createCompany = (body: { name: string }) => {
+  return httpClient.fetch<Company>('/companies', { method: 'POST', body });
+};

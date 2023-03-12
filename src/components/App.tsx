@@ -1,19 +1,29 @@
 import { ComponentType } from 'react';
-import { Provider } from 'react-redux';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { AuthProvider } from '../auth';
 import { router } from '../router';
-import { store } from '../store';
 import { theme } from '../theme';
 import { GlobalStyles } from './GlobalStyles';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+    },
+  },
+});
 
 export const App: ComponentType = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Provider store={store}>
-        <RouterProvider router={router}></RouterProvider>
-      </Provider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router}></RouterProvider>
+        </QueryClientProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 };

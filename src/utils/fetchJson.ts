@@ -9,7 +9,10 @@ export type FetchJsonParams = Omit<RequestInit, 'body'> & {
   body?: any;
 };
 
-export const fetchJson = async (url: string, { headers, body, ...init }: FetchJsonParams = {}) => {
+export const fetchJson = async <T>(
+  url: string,
+  { headers, body, ...init }: FetchJsonParams = {},
+) => {
   const response = await fetch(url, {
     ...init,
     headers: { ...headers, [HEADERS.CONTENT_TYPE]: CONTENT_TYPES.JSON },
@@ -21,5 +24,5 @@ export const fetchJson = async (url: string, { headers, body, ...init }: FetchJs
   if (response.headers.get(HEADERS.CONTENT_TYPE) !== CONTENT_TYPES.JSON) {
     throw new Error('Response is not in JSON format');
   }
-  return response.json();
+  return response.json() as T;
 };

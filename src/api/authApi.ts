@@ -1,44 +1,53 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ACCESS_TOKEN_ID_KEY, API_BASE_URL, HEADERS } from '../constants';
-import { fetchJson } from '../utils/fetchJson';
+import { ACCESS_TOKEN_ID_KEY, HEADERS } from '../constants';
 import { httpClient } from '../utils/httpClient';
 import { HttpError } from '../utils/HttpError';
 
-export const restoreAccessToken = createAsyncThunk('restoreAccessToken', async () => {
+export type User = {
+  id: string;
+  username: string;
+  is_root: boolean;
+};
+
+export type AccessToken = {
+  id: string;
+  user_id: string;
+  user: User;
+};
+
+export type Credentials = {
+  username: string;
+  password: string;
+};
+
+export const restoreAccessToken = async () => {
   const accessTokenId = window.localStorage.getItem(ACCESS_TOKEN_ID_KEY);
   if (!accessTokenId) {
-    return;
+    return null;
   }
   try {
-    const accessTokenPromise = fetchJson(`${API_BASE_URL}/access-tokens/${accessTokenId}`);
-    httpClient.setWaitPromise(accessTokenPromise);
-    const accessToken = await accessTokenPromise;
+    const accessToken = await httpClient.fetch<AccessToken>(`/access-tokens/${accessTokenId}`);
     httpClient.setHeader(HEADERS.AUTHORIZATION, `Bearer ${accessToken.id}`);
     return accessToken;
   } catch (error) {
     if (error instanceof HttpError && error.statusCode === 404) {
       window.localStorage.removeItem(ACCESS_TOKEN_ID_KEY);
     }
-    throw error;
+    return null;
   }
-});
-
-type CreateAccessTokenBody = {
-  username: string;
-  password: string;
 };
-export const createAccessToken = createAsyncThunk(
-  'createAccessToken',
-  async (body: CreateAccessTokenBody) => {
-    const accessTokenPromise = fetchJson(`${API_BASE_URL}/access-tokens`, { method: 'POST', body });
-    httpClient.setWaitPromise(accessTokenPromise);
-    const accessToken = await accessTokenPromise;
-    httpClient.setHeader(HEADERS.AUTHORIZATION, `Bearer ${accessToken.id}`);
-    window.localStorage.setItem(ACCESS_TOKEN_ID_KEY, accessToken.id);
-    return accessToken;
-  },
-);
 
-export const signOut = createAsyncThunk('signOut', () => {
+export const createAccessToken = async (body: Credentials) => {
+  const accessToken = await httpClient.fetch<AccessToken>('/access-tokens', {
+    method: 'POST',
+    body,
+  });
+  httpClient.setHeader(HEADERS.AUTHORIZATION, `Bearer ${accessToken.id}`);
+  window.localStorage.setItem(ACCESS_TOKEN_ID_KEY, accessToken.id);
+  return accessToken;
+};
+
+export const deleteAccessToken = async () => {
+  await httpClient.fetch<AccessToken>('/access-tokens', { method: 'DELETE' });
+  httpClient.removeHeader(HEADERS.AUTHORIZATION);
   window.localStorage.removeItem(ACCESS_TOKEN_ID_KEY);
-});
+};

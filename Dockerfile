@@ -1,6 +1,5 @@
 FROM node:18-alpine AS build
 WORKDIR /app
-RUN apk add git
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . ./

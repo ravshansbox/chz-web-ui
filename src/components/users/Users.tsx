@@ -1,8 +1,7 @@
-import { ComponentType, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { ComponentType } from 'react';
+import { useQuery } from 'react-query';
 import { useOutlet } from 'react-router-dom';
 import { fetchUsers } from '../../api/userApi';
-import { AppState, useAppDispatch } from '../../store';
 import { Card } from '../core/Card';
 import { List } from '../core/List';
 import { NavLink } from '../core/NavLink';
@@ -10,20 +9,15 @@ import { Table, TableBodyCell, TableHeadCell } from '../core/Table';
 
 export const Users: ComponentType = () => {
   const outlet = useOutlet();
-  const users = useSelector((state: AppState) => state.users);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, []);
+  const users = useQuery('users', fetchUsers);
 
   return (
     <Card title="Users">
       <List>
         <NavLink to="new">New</NavLink>
       </List>
-      {outlet ||
-        (users.list && (
+      {outlet ??
+        (users.data && (
           <Table>
             <thead>
               <tr>
@@ -33,7 +27,7 @@ export const Users: ComponentType = () => {
               </tr>
             </thead>
             <tbody>
-              {users.list.map((user) => (
+              {users.data.map((user) => (
                 <tr key={user.id}>
                   <TableBodyCell>{user.id}</TableBodyCell>
                   <TableBodyCell>{user.username}</TableBodyCell>

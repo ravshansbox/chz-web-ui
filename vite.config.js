@@ -2,10 +2,6 @@ import react from '@vitejs/plugin-react';
 
 /** @type {import('vite').UserConfig} */
 const config = {
-  define: {
-    VITE_APP_VERSION: JSON.stringify(process.env.npm_package_version),
-    VITE_BUILD_TIMESTAMP: JSON.stringify(new Date().toISOString()),
-  },
   plugins: [react()],
   server: {
     proxy: {

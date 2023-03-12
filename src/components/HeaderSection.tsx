@@ -1,8 +1,6 @@
 import { ComponentType } from 'react';
-import { useSelector } from 'react-redux';
 import styled, { useTheme } from 'styled-components';
-import { signOut } from '../api/authApi';
-import { AppState, useAppDispatch } from '../store';
+import { useAuth } from '../auth';
 import { LinkButton } from './core/LinkButton';
 import { List } from './core/List';
 import { NavLink } from './core/NavLink';
@@ -18,20 +16,15 @@ const Container = styled('div')({
   justifyContent: 'space-between',
 });
 
-const Item = styled('li')({
-  paddingInline: '4px',
-});
-
 export const HeaderSection: ComponentType = () => {
   const theme = useTheme();
-  const auth = useSelector((state: AppState) => state.auth);
-  const dispatch = useAppDispatch();
+  const auth = useAuth();
 
   return (
     <Container>
       <List>
         {links.map((link, index) => (
-          <Item key={index}>
+          <li key={index}>
             <NavLink
               style={({ isActive }) => ({
                 color: theme.linkColor,
@@ -41,22 +34,22 @@ export const HeaderSection: ComponentType = () => {
             >
               {link.title}
             </NavLink>
-          </Item>
+          </li>
         ))}
       </List>
       <List>
-        <Item>
-          <span>{auth.username}</span>
+        <li>
+          <span>{auth.user?.username}</span>
           <span>(</span>
           <LinkButton
-            onClick={() => {
-              dispatch(signOut());
+            onClick={async () => {
+              await auth.logout();
             }}
           >
-            sign out
+            logout
           </LinkButton>
           <span>)</span>
-        </Item>
+        </li>
       </List>
     </Container>
   );

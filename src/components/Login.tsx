@@ -1,8 +1,7 @@
 import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { createAccessToken } from '../api/authApi';
-import { useAppDispatch } from '../store';
+import { useAuth } from '../auth';
 import { Label } from './core/Label';
 
 const Container = styled('div')({
@@ -25,18 +24,17 @@ const FormStyled = styled(Form)({
   },
 });
 
-export const SignIn = () => {
-  const dispatch = useAppDispatch();
+export const Login = () => {
   const navigate = useNavigate();
+  const auth = useAuth();
 
   return (
     <Container>
       <Formik
         initialValues={{ username: '', password: '' }}
-        onSubmit={(values) => {
-          dispatch(createAccessToken(values)).then(() => {
-            navigate('/');
-          });
+        onSubmit={async (values) => {
+          await auth.authenticate(values);
+          navigate('/');
         }}
       >
         <FormStyled>
