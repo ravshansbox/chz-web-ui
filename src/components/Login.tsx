@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuth } from '../auth';
+import { useAuth } from '../common/auth';
 import { Label } from './core/Label';
 
 const Container = styled('div')({

@@ -1,6 +1,6 @@
-import { ACCESS_TOKEN_ID_KEY, HEADERS } from '../constants';
-import { httpClient } from '../utils/httpClient';
-import { HttpError } from '../utils/HttpError';
+import { ACCESS_TOKEN_ID_KEY, HEADERS } from '../common/constants';
+import { httpClient } from '../common/httpClient';
+import { HttpError } from '../common/HttpError';
 
 export type User = {
   id: string;

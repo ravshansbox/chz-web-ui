@@ -12,7 +12,7 @@ import {
   restoreAccessToken,
   type Credentials,
   type User,
-} from './api/authApi';
+} from '../api/authApi';
 
 type ContextValue = { isFetching: boolean; user: User | null };
 

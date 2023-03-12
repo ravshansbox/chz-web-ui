@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 import { useOutlet } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuth } from '../auth';
+import { useAuth } from '../common/auth';
 import { Header } from './core/Header';
 import { HeaderSection } from './HeaderSection';
 import { Login } from './Login';

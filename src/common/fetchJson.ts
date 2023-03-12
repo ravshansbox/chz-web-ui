@@ -1,4 +1,4 @@
-import { CONTENT_TYPES, HEADERS } from '../constants';
+import { CONTENT_TYPES, HEADERS } from './constants';
 import { HttpError } from './HttpError';
 
 const isResponseOk = (response: Response) => {

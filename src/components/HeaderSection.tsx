@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { useAuth } from '../auth';
+import { useAuth } from '../common/auth';
 import { LinkButton } from './core/LinkButton';
 import { List } from './core/List';
 import { NavLink } from './core/NavLink';
