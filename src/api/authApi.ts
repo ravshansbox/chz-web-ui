@@ -1,23 +1,7 @@
 import { ACCESS_TOKEN_ID_KEY, HEADERS } from '../common/constants';
 import { httpClient } from '../common/httpClient';
 import { HttpError } from '../common/HttpError';
-
-export type User = {
-  id: string;
-  username: string;
-  is_root: boolean;
-};
-
-export type AccessToken = {
-  id: string;
-  user_id: string;
-  user: User;
-};
-
-export type Credentials = {
-  username: string;
-  password: string;
-};
+import { type AccessToken, type Credentials } from '../common/types';
 
 export const restoreAccessToken = async () => {
   const accessTokenId = window.localStorage.getItem(ACCESS_TOKEN_ID_KEY);

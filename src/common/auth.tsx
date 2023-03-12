@@ -6,13 +6,8 @@ import {
   type ComponentType,
   type PropsWithChildren,
 } from 'react';
-import {
-  createAccessToken,
-  deleteAccessToken,
-  restoreAccessToken,
-  type Credentials,
-  type User,
-} from '../api/authApi';
+import { createAccessToken, deleteAccessToken, restoreAccessToken } from '../api/authApi';
+import { type Credentials, type User } from './types';
 
 type ContextValue = { isFetching: boolean; user: User | null };
 

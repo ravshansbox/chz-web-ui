@@ -1,8 +1,10 @@
 import { Field, Form as FormCore, Formik } from 'formik';
-import { ComponentType } from 'react';
+import { type ComponentType } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { createCompany } from '../../api/companyApi';
+import { httpClient } from '../../common/httpClient';
+import { type Company } from '../../common/types';
 import { Label } from '../core/Label';
 
 const Form = styled(FormCore)({
@@ -13,12 +15,18 @@ const Form = styled(FormCore)({
 
 export const NewCompany: ComponentType = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const createCompany = useMutation({
+    mutationFn: (body: { name: string }) =>
+      httpClient.fetch<Company>('/companies', { method: 'POST', body }),
+    onSuccess: () => queryClient.invalidateQueries(['companies']),
+  });
 
   return (
     <Formik
       initialValues={{ name: '' }}
       onSubmit={async (values) => {
-        await createCompany(values);
+        await createCompany.mutateAsync(values);
         navigate('/companies');
       }}
     >

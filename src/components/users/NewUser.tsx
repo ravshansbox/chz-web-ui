@@ -1,8 +1,10 @@
 import { Field, Form as FormCore, Formik } from 'formik';
-import { ComponentType } from 'react';
+import { type ComponentType } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { createUser } from '../../api/userApi';
+import { httpClient } from '../../common/httpClient';
+import { type Credentials, type User } from '../../common/types';
 import { Label } from '../core/Label';
 
 const Form = styled(FormCore)({
@@ -13,12 +15,17 @@ const Form = styled(FormCore)({
 
 export const NewUser: ComponentType = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const createUser = useMutation({
+    mutationFn: (body: Credentials) => httpClient.fetch<User>('/users', { method: 'POST', body }),
+    onSuccess: () => queryClient.invalidateQueries(['users']),
+  });
 
   return (
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={async (values) => {
-        await createUser(values);
+        await createUser.mutateAsync(values);
         navigate('/users');
       }}
     >
