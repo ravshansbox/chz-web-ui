@@ -1,4 +1,4 @@
-import { ComponentType, PropsWithChildren } from 'react';
+import { type ComponentType, type PropsWithChildren } from 'react';
 import styled from 'styled-components';
 import { Header as HeadingCore } from './Header';
 

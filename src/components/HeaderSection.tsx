@@ -1,9 +1,10 @@
-import { ComponentType } from 'react';
+import { type ComponentType } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { useAuth } from '../common/auth';
 import { LinkButton } from './core/LinkButton';
 import { List } from './core/List';
 import { NavLink } from './core/NavLink';
+import { SelectCompany } from './SelectCompany';
 
 const links = [
   { path: '', title: 'Home' },
@@ -37,6 +38,7 @@ export const HeaderSection: ComponentType = () => {
           </li>
         ))}
       </List>
+      <SelectCompany />
       <List>
         <li>
           <span>{auth.user?.username}</span>

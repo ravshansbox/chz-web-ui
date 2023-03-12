@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { type ComponentType } from 'react';
 import { NavLink as NavLinkCore, NavLinkProps } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 

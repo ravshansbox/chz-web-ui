@@ -1,4 +1,4 @@
-import { fetchJson, FetchJsonParams } from './fetchJson';
+import { fetchJson, type FetchJsonParams } from './fetchJson';
 
 export const createHttpClient = (baseUrl: string) => {
   const defaultHeaders: HeadersInit = {};

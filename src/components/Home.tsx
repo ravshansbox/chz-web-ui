@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { type ComponentType } from 'react';
 import { useOutlet } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../common/auth';
