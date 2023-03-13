@@ -1,5 +1,7 @@
 export type Entity<T> = { id: string } & T;
 
+export type NewEntity<T> = Omit<T, 'id'>;
+
 export type User = Entity<{
   username: string;
   is_root: boolean;
@@ -20,14 +22,17 @@ export type Permission = Entity<{
 }>;
 
 export type Customer = Entity<{
+  company_id: string;
   name: string;
 }>;
 
 export type Product = Entity<{
+  company_id: string;
   name: string;
 }>;
 
 export type Order = Entity<{
+  company_id: string;
   name: string;
 }>;
 

@@ -9,16 +9,18 @@ import { Form } from '../core/Form';
 import { Label } from '../core/Label';
 
 export const NewUser: ComponentType = () => {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const createUser = useMutation({
     mutationFn: (body: Credentials) => httpClient.fetch<User>('/users', { method: 'POST', body }),
     onSuccess: () => queryClient.invalidateQueries([QUERY_KEYS.USERS]),
   });
+  const navigate = useNavigate();
+
+  const initialValues: Credentials = { username: '', password: '' };
 
   return (
     <Formik
-      initialValues={{ username: '', password: '' }}
+      initialValues={initialValues}
       onSubmit={async (values) => {
         await createUser.mutateAsync(values);
         navigate('/users');

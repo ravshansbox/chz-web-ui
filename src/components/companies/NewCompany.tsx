@@ -4,12 +4,11 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { QUERY_KEYS } from '../../common/constants';
 import { httpClient } from '../../common/httpClient';
-import { type Company } from '../../common/types';
+import { NewEntity, type Company } from '../../common/types';
 import { Form } from '../core/Form';
 import { Label } from '../core/Label';
 
 export const NewCompany: ComponentType = () => {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const createCompany = useMutation({
     mutationFn: (body: { name: string }) => {
@@ -22,10 +21,13 @@ export const NewCompany: ComponentType = () => {
       ]);
     },
   });
+  const navigate = useNavigate();
+
+  const initialValues: NewEntity<Company> = { name: '' };
 
   return (
     <Formik
-      initialValues={{ name: '' }}
+      initialValues={initialValues}
       onSubmit={async (values) => {
         await createCompany.mutateAsync(values);
         navigate('/companies');

@@ -2,6 +2,7 @@ import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../common/auth';
+import { type Credentials } from '../common/types';
 import { Label } from './core/Label';
 
 const Container = styled('div')({
@@ -25,13 +26,15 @@ const FormStyled = styled(Form)({
 });
 
 export const Login = () => {
-  const navigate = useNavigate();
   const auth = useAuth();
+  const navigate = useNavigate();
+
+  const initialValues: Credentials = { username: '', password: '' };
 
   return (
     <Container>
       <Formik
-        initialValues={{ username: '', password: '' }}
+        initialValues={initialValues}
         onSubmit={async (values) => {
           await auth.authenticate(values);
           navigate('/');
@@ -40,11 +43,11 @@ export const Login = () => {
         <FormStyled>
           <Label>
             <span>Username</span>
-            <Field type="text" name="username" />
+            <Field name="username" type="text" />
           </Label>
           <Label>
             <span>Password</span>
-            <Field type="password" name="password" />
+            <Field name="password" type="password" />
           </Label>
           <button type="submit">Submit</button>
         </FormStyled>

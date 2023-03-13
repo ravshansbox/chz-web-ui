@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../../common/appStore';
 import { QUERY_KEYS } from '../../common/constants';
 import { httpClient } from '../../common/httpClient';
-import { type Customer } from '../../common/types';
+import { type Customer, type NewEntity } from '../../common/types';
 import { Form } from '../core/Form';
 import { Label } from '../core/Label';
 
@@ -23,9 +23,14 @@ export const NewCustomer: ComponentType = () => {
     return null;
   }
 
+  const initialValues: NewEntity<Customer> = {
+    company_id: appStore.selectedCompany.id,
+    name: '',
+  };
+
   return (
     <Formik
-      initialValues={{ company_id: appStore.selectedCompany.id, name: '' }}
+      initialValues={initialValues}
       onSubmit={async (values) => {
         await createCustomer.mutateAsync(values);
         navigate('/customers');
@@ -34,7 +39,7 @@ export const NewCustomer: ComponentType = () => {
       <Form autoComplete="off">
         <Label>
           <span>Name</span>
-          <Field name="name" />
+          <Field name="name" type="text" />
         </Label>
         <button type="submit">Create</button>
       </Form>
