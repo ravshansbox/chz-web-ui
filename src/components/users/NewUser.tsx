@@ -1,18 +1,12 @@
-import { Field, Form as FormCore, Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import { type ComponentType } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { QUERY_KEYS } from '../../common/constants';
 import { httpClient } from '../../common/httpClient';
 import { type Credentials, type User } from '../../common/types';
+import { Form } from '../core/Form';
 import { Label } from '../core/Label';
-
-const Form = styled(FormCore)({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
-});
 
 export const NewUser: ComponentType = () => {
   const navigate = useNavigate();

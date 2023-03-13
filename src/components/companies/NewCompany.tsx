@@ -1,30 +1,26 @@
-import { Field, Form as FormCore, Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import { type ComponentType } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { QUERY_KEYS } from '../../common/constants';
 import { httpClient } from '../../common/httpClient';
 import { type Company } from '../../common/types';
+import { Form } from '../core/Form';
 import { Label } from '../core/Label';
-
-const Form = styled(FormCore)({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
-});
 
 export const NewCompany: ComponentType = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const createCompany = useMutation({
-    mutationFn: (body: { name: string }) =>
-      httpClient.fetch<Company>('/companies', { method: 'POST', body }),
-    onSuccess: () =>
-      Promise.all([
+    mutationFn: (body: { name: string }) => {
+      return httpClient.fetch<Company>('/companies', { method: 'POST', body });
+    },
+    onSuccess: () => {
+      return Promise.all([
         queryClient.invalidateQueries([QUERY_KEYS.COMPANIES]),
         queryClient.invalidateQueries([QUERY_KEYS.PERMISSIONS_COMPANIES]),
-      ]),
+      ]);
+    },
   });
 
   return (
