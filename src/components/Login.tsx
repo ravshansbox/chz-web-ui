@@ -1,4 +1,4 @@
-import { Field, Form, Formik } from 'formik';
+import { Field, Form as FormCore, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../common/auth';
@@ -11,7 +11,7 @@ const Container = styled('div')({
   justifyContent: 'center',
 });
 
-const FormStyled = styled(Form)({
+const Form = styled(FormCore)({
   display: 'flex',
   flexDirection: 'column',
   gap: '16px',
@@ -40,7 +40,7 @@ export const Login = () => {
           navigate('/');
         }}
       >
-        <FormStyled>
+        <Form>
           <Label>
             <span>Username</span>
             <Field name="username" type="text" />
@@ -50,7 +50,7 @@ export const Login = () => {
             <Field name="password" type="password" />
           </Label>
           <button type="submit">Submit</button>
-        </FormStyled>
+        </Form>
       </Formik>
     </Container>
   );

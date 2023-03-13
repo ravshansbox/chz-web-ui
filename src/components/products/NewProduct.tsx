@@ -36,7 +36,7 @@ export const NewProduct: ComponentType = () => {
         navigate('/products');
       }}
     >
-      <Form>
+      <Form autoComplete="off">
         <Label>
           <span>Name</span>
           <Field name="name" type="text" />
