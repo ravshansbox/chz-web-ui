@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Companies } from '../components/companies/Companies';
 import { NewCompany } from '../components/companies/NewCompany';
+import { Customers } from '../components/customers/Customers';
+import { NewCustomer } from '../components/customers/NewCustomer';
 import { Home } from '../components/Home';
 import { NewOrder } from '../components/orders/NewOrder';
 import { Orders } from '../components/orders/Orders';
@@ -31,6 +33,16 @@ export const router = createBrowserRouter([
           {
             path: 'new',
             Component: NewCompany,
+          },
+        ],
+      },
+      {
+        path: 'customers',
+        Component: Customers,
+        children: [
+          {
+            path: 'new',
+            Component: NewCustomer,
           },
         ],
       },

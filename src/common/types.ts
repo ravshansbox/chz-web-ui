@@ -19,6 +19,10 @@ export type Permission = Entity<{
   company: Company;
 }>;
 
+export type Customer = Entity<{
+  name: string;
+}>;
+
 export type Product = Entity<{
   name: string;
 }>;

@@ -9,7 +9,8 @@ import { SelectCompany } from './SelectCompany';
 const links = [
   { path: '', title: 'Home' },
   { path: 'users', title: 'Users', rootOnly: true },
-  { path: 'companies', title: 'Companies', rootOnly: true },
+  { path: 'companies', title: 'Companies', nonRootOnly: true },
+  { path: 'customers', title: 'Customers', nonRootOnly: true },
   { path: 'products', title: 'Products', nonRootOnly: true },
   { path: 'orders', title: 'Orders', nonRootOnly: true },
 ];
