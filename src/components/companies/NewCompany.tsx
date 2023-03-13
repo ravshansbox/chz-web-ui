@@ -22,7 +22,7 @@ export const NewCompany: ComponentType = () => {
     onSuccess: () =>
       Promise.all([
         queryClient.invalidateQueries(['companies']),
-        queryClient.invalidateQueries(['permissions']),
+        queryClient.invalidateQueries(['permissions:companies']),
       ]),
   });
 

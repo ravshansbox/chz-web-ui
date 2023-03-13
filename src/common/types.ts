@@ -19,6 +19,14 @@ export type Permission = Entity<{
   company: Company;
 }>;
 
+export type Product = Entity<{
+  name: string;
+}>;
+
+export type Order = Entity<{
+  name: string;
+}>;
+
 export type Credentials = {
   username: string;
   password: string;

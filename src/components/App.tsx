@@ -7,7 +7,7 @@ import { AuthProvider } from '../common/auth';
 import { queryClient } from '../common/queryClient';
 import { router } from '../common/router';
 import { theme } from '../common/theme';
-import { GlobalStyles } from './GlobalStyles';
+import { GlobalStyles } from './core/GlobalStyles';
 
 export const App: ComponentType = () => (
   <ThemeProvider theme={theme}>

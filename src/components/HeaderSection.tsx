@@ -10,6 +10,8 @@ const links = [
   { path: '', title: 'Home' },
   { path: 'users', title: 'Users' },
   { path: 'companies', title: 'Companies' },
+  { path: 'products', title: 'Products' },
+  { path: 'orders', title: 'Orders' },
 ];
 
 const Container = styled('div')({
