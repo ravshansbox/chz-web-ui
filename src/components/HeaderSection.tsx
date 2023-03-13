@@ -8,8 +8,8 @@ import { SelectCompany } from './SelectCompany';
 
 const links = [
   { path: '', title: 'Home' },
-  { path: 'users', title: 'Users' },
-  { path: 'companies', title: 'Companies' },
+  { path: 'users', title: 'Users', rootOnly: true },
+  { path: 'companies', title: 'Companies', rootOnly: true },
   { path: 'products', title: 'Products', nonRootOnly: true },
   { path: 'orders', title: 'Orders', nonRootOnly: true },
 ];
@@ -23,12 +23,16 @@ export const HeaderSection: ComponentType = () => {
   const theme = useTheme();
   const auth = useAuth();
   const isRoot = auth.user !== null && auth.user.is_root;
+  const isNonRoot = auth.user !== null && !auth.user.is_root;
 
   return (
     <Container>
       <List>
-        {links.map((link, index) =>
-          link.nonRootOnly && isRoot ? null : (
+        {links.map((link, index) => {
+          if ((link.rootOnly && !isRoot) || (link.nonRootOnly && !isNonRoot)) {
+            return null;
+          }
+          return (
             <li key={index}>
               <NavLink
                 style={({ isActive }) => ({
@@ -40,8 +44,8 @@ export const HeaderSection: ComponentType = () => {
                 {link.title}
               </NavLink>
             </li>
-          ),
-        )}
+          );
+        })}
       </List>
       <List>
         <li>
