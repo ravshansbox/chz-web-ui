@@ -39,7 +39,7 @@ export const NewCustomer: ComponentType = () => {
       <Form autoComplete="off">
         <Label>
           <span>Name</span>
-          <Field name="name" type="text" />
+          <Field name="name" type="text" autoFocus />
         </Label>
         <button type="submit">Create</button>
       </Form>

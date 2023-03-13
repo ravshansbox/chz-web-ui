@@ -29,7 +29,7 @@ export const NewUser: ComponentType = () => {
       <Form autoComplete="off">
         <Label>
           <span>Username</span>
-          <Field name="username" type="text" />
+          <Field name="username" type="text" autoFocus />
         </Label>
         <Label>
           <span>Password</span>
