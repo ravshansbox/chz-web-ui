@@ -19,7 +19,11 @@ export const NewCompany: ComponentType = () => {
   const createCompany = useMutation({
     mutationFn: (body: { name: string }) =>
       httpClient.fetch<Company>('/companies', { method: 'POST', body }),
-    onSuccess: () => queryClient.invalidateQueries(['companies']),
+    onSuccess: () =>
+      Promise.all([
+        queryClient.invalidateQueries(['companies']),
+        queryClient.invalidateQueries(['permissions']),
+      ]),
   });
 
   return (
