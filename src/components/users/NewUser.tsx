@@ -3,6 +3,7 @@ import { type ComponentType } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { QUERY_KEYS } from '../../common/constants';
 import { httpClient } from '../../common/httpClient';
 import { type Credentials, type User } from '../../common/types';
 import { Label } from '../core/Label';
@@ -18,7 +19,7 @@ export const NewUser: ComponentType = () => {
   const queryClient = useQueryClient();
   const createUser = useMutation({
     mutationFn: (body: Credentials) => httpClient.fetch<User>('/users', { method: 'POST', body }),
-    onSuccess: () => queryClient.invalidateQueries(['users']),
+    onSuccess: () => queryClient.invalidateQueries([QUERY_KEYS.USERS]),
   });
 
   return (

@@ -3,6 +3,7 @@ import { type ComponentType } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { QUERY_KEYS } from '../../common/constants';
 import { httpClient } from '../../common/httpClient';
 import { type Company } from '../../common/types';
 import { Label } from '../core/Label';
@@ -21,8 +22,8 @@ export const NewCompany: ComponentType = () => {
       httpClient.fetch<Company>('/companies', { method: 'POST', body }),
     onSuccess: () =>
       Promise.all([
-        queryClient.invalidateQueries(['companies']),
-        queryClient.invalidateQueries(['permissions:companies']),
+        queryClient.invalidateQueries([QUERY_KEYS.COMPANIES]),
+        queryClient.invalidateQueries([QUERY_KEYS.PERMISSIONS_COMPANIES]),
       ]),
   });
 

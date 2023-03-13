@@ -10,3 +10,12 @@ export const HEADERS = {
 export const CONTENT_TYPES = {
   JSON: 'application/json',
 };
+
+export const QUERY_KEYS = {
+  COMPANIES: 'companies',
+  CUSTOMERS: 'customers',
+  ORDERS: 'orders',
+  PERMISSIONS_COMPANIES: 'permissions:companies',
+  PRODUCTS: 'products',
+  USERS: 'users',
+};

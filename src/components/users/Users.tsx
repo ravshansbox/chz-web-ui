@@ -1,6 +1,7 @@
 import { type ComponentType } from 'react';
 import { useQuery } from 'react-query';
 import { useOutlet } from 'react-router-dom';
+import { QUERY_KEYS } from '../../common/constants';
 import { httpClient } from '../../common/httpClient';
 import { type User } from '../../common/types';
 import { Card } from '../core/Card';
@@ -11,7 +12,7 @@ import { TableList } from '../core/TableList';
 export const Users: ComponentType = () => {
   const outlet = useOutlet();
   const users = useQuery({
-    queryKey: ['users'],
+    queryKey: [QUERY_KEYS.USERS],
     queryFn: () => httpClient.fetch<User[]>('/users'),
   });
 
