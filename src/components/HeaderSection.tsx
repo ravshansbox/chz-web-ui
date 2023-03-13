@@ -43,8 +43,10 @@ export const HeaderSection: ComponentType = () => {
           ),
         )}
       </List>
-      <SelectCompany />
       <List>
+        <li>
+          <SelectCompany />
+        </li>
         <li>
           <span>{auth.user?.username}</span>
           <span>(</span>
