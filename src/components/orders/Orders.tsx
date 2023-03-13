@@ -6,7 +6,7 @@ import { httpClient } from '../../common/httpClient';
 import { type Order } from '../../common/types';
 import { Card } from '../core/Card';
 import { List } from '../core/List';
-import { Table, TableBodyCell, TableHeadCell } from '../core/Table';
+import { TableList } from '../core/TableList';
 
 export const Orders: ComponentType = () => {
   const outlet = useOutlet();
@@ -24,22 +24,11 @@ export const Orders: ComponentType = () => {
       </List>
       {outlet ??
         (orders.data && (
-          <Table>
-            <thead>
-              <tr>
-                <TableHeadCell>ID</TableHeadCell>
-                <TableHeadCell>Name</TableHeadCell>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.data.map((user) => (
-                <tr key={user.id}>
-                  <TableBodyCell>{user.id}</TableBodyCell>
-                  <TableBodyCell>{user.name}</TableBodyCell>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <TableList
+            items={orders.data}
+            headerTitles={['ID', 'Name']}
+            cellPropKeys={['id', 'name']}
+          />
         ))}
     </Card>
   );

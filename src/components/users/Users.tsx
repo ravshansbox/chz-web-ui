@@ -6,7 +6,7 @@ import { type User } from '../../common/types';
 import { Card } from '../core/Card';
 import { List } from '../core/List';
 import { NavLink } from '../core/NavLink';
-import { Table, TableBodyCell, TableHeadCell } from '../core/Table';
+import { TableList } from '../core/TableList';
 
 export const Users: ComponentType = () => {
   const outlet = useOutlet();
@@ -22,24 +22,11 @@ export const Users: ComponentType = () => {
       </List>
       {outlet ??
         (users.data && (
-          <Table>
-            <thead>
-              <tr>
-                <TableHeadCell>ID</TableHeadCell>
-                <TableHeadCell>Username</TableHeadCell>
-                <TableHeadCell>Root</TableHeadCell>
-              </tr>
-            </thead>
-            <tbody>
-              {users.data.map((user) => (
-                <tr key={user.id}>
-                  <TableBodyCell>{user.id}</TableBodyCell>
-                  <TableBodyCell>{user.username}</TableBodyCell>
-                  <TableBodyCell>{String(user.is_root)}</TableBodyCell>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <TableList
+            items={users.data}
+            headerTitles={['ID', 'Username', 'Root']}
+            cellPropKeys={['id', 'username', 'is_root']}
+          />
         ))}
     </Card>
   );
