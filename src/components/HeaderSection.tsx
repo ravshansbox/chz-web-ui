@@ -39,23 +39,25 @@ export const HeaderSection: ComponentType = () => {
           );
         })}
       </List>
-      <List>
-        <li>
-          <SelectCompany />
-        </li>
-        <li>
-          <span>{auth.user?.username}</span>
-          <span>(</span>
-          <LinkButton
-            onClick={async () => {
-              await auth.logout();
-            }}
-          >
-            logout
-          </LinkButton>
-          <span>)</span>
-        </li>
-      </List>
+      {auth.user && (
+        <List>
+          <li>
+            <SelectCompany />
+          </li>
+          <li>
+            <span>{auth.user.username}</span>
+            <span>(</span>
+            <LinkButton
+              onClick={async () => {
+                await auth.logout();
+              }}
+            >
+              logout
+            </LinkButton>
+            <span>)</span>
+          </li>
+        </List>
+      )}
     </Container>
   );
 };
