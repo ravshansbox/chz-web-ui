@@ -1,5 +1,5 @@
 import { type ComponentType } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { useAuth } from '../common/auth';
 import { LinkButton } from './core/LinkButton';
 import { List } from './core/List';
@@ -21,7 +21,6 @@ const Container = styled('div')({
 });
 
 export const HeaderSection: ComponentType = () => {
-  const theme = useTheme();
   const auth = useAuth();
   const isRoot = auth.user !== null && auth.user.is_root;
   const isNonRoot = auth.user !== null && !auth.user.is_root;
@@ -35,15 +34,7 @@ export const HeaderSection: ComponentType = () => {
           }
           return (
             <li key={index}>
-              <NavLink
-                style={({ isActive }) => ({
-                  color: theme.linkColor,
-                  textDecoration: isActive ? 'underline' : 'none',
-                })}
-                to={link.path}
-              >
-                {link.title}
-              </NavLink>
+              <NavLink to={link.path}>{link.title}</NavLink>
             </li>
           );
         })}
