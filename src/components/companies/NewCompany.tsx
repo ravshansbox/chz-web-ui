@@ -36,6 +36,7 @@ export const NewCompany: ComponentType = () => {
     >
       <Form autoComplete="off">
         <Label>
+          <span>Name</span>
           <Field name="name" type="text" />
         </Label>
         <button type="submit">Create</button>
